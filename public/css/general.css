@@ -1,0 +1,22 @@
+/* Estilos generales */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+.subtitle {
+    font-family: var(--font_poppins);
+    color: var(--primary);
+    font-size: 2rem;
+}
