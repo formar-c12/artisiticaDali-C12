@@ -25,7 +25,7 @@
                <img src="/images/logo/logo.png" alt="">
            </div>
 
-           <i class="fas fa-bars burguer-menu-icon"></i>
+           <i class="fas fa-bars burguer-menu-icon" onclick="dropMenu()"></i>
 
            <!-- Menú de navegación mobile -->
            <nav class="navigation-bar" id="navigation-bar-mobile">
@@ -37,15 +37,15 @@
 
             <!-- Lista con los elementos del menú (categorías) -->
             <ul class="menu">
-                <li class="dropdown-menu">
+                <li class="dropdown-menu" onclick="dropSubCategoryMenu(school)">
                     <a href="">Escolar</a>
                     <i class="fas fa-chevron-down" ></i>
                 </li>
-                <li class="dropdown-menu">
+                <li class="dropdown-menu" onclick="dropSubCategoryMenu(art)">
                     <a href="">Artística</a>
                     <i class="fas fa-chevron-down" ></i>
                 </li>
-                <li class="dropdown-menu">
+                <li class="dropdown-menu" onclick="dropSubCategoryMenu(office)">
                     <a href="">Oficina</a>
                     <i class="fas fa-chevron-down" ></i>
                 </li>
@@ -75,7 +75,7 @@
            </nav>
 
            <!-- Icono del buscador en header mobile -->
-           <div class="search-icon">
+           <div class="search-icon" onclick="dropSearch()">
             <i class="fas fa-search"></i>
            </div>
 
@@ -99,7 +99,7 @@
 
             <!-- Buscador Mobile -->
 
-            <form action="" class="search-form-mobile">
+            <form action="" class="search-form-mobile" id="search">
                 <div class="search-bar">
                     <input type="search" name="" id="" placeholder="Buscar productos">
                     <button type="submit"><i class="fas fa-search"></i></button>
@@ -111,7 +111,7 @@
             <div class="subcategory_menu" id="school">
                 <div class="subcategory_header">
                     <h3><a href="">ESCOLAR</a></h3>
-                    <img src="/images/close.png" alt="">
+                    <img src="/images/close.png" alt="" onclick="closeWindow()">
                 </div>
                 <ul>
                     <li><a href="">Subcategoria</a></li>
@@ -148,6 +148,6 @@
         </nav>
 
     </header>
-    
+    <script src="/js/header.js"></script>
 </body>
 </html>

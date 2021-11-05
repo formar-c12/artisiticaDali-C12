@@ -123,9 +123,6 @@ i.fa-search {
     margin-left: 10px;
 }
 
-.main-header .navigation-bar#navigation-bar-desktop {
-    display: none;
-}
 
 /* Menu desplegable de subcategorías */
 
@@ -134,9 +131,6 @@ i.fa-search {
     font-size: 1rem;
 }
 
-.subcategory_menu {
-    display: none;
-}
 
 .subcategory_menu.active {
     display: block;
