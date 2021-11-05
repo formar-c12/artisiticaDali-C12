@@ -37,16 +37,16 @@
 
             <!-- Lista con los elementos del menú (categorías) -->
             <ul class="menu">
-                <li class="dropdown-menu" onclick="dropSubCategoryMenu(school)">
-                    <a href="">Escolar</a>
+                <li class="dropdown-menu" onclick="dropSubCategoryMenu(`school`)">
+                   Escolar
                     <i class="fas fa-chevron-down" ></i>
                 </li>
-                <li class="dropdown-menu" onclick="dropSubCategoryMenu(art)">
-                    <a href="">Artística</a>
+                <li class="dropdown-menu" onclick="dropSubCategoryMenu(`art`)">
+                   Artística
                     <i class="fas fa-chevron-down" ></i>
                 </li>
-                <li class="dropdown-menu" onclick="dropSubCategoryMenu(office)">
-                    <a href="">Oficina</a>
+                <li class="dropdown-menu" onclick="dropSubCategoryMenu(`office`)">
+                   Oficina
                     <i class="fas fa-chevron-down" ></i>
                 </li>
                 <li><a href="">Contacto</a></li>
@@ -58,16 +58,16 @@
 
             <!-- Lista con los elementos del menú (categorías) -->
             <ul class="menu">
-                <li class="dropdown-menu">
-                    <a href="">Escolar</a>
+                <li class="dropdown-menu" onclick="dropSubCategoryMenu(`school`)">
+                   Escolar
                     <i class="fas fa-chevron-down" ></i>
                 </li>
-                <li class="dropdown-menu">
-                    <a href="">Artística</a>
+                <li class="dropdown-menu" onclick="dropSubCategoryMenu(`art`)">
+                   Artística
                     <i class="fas fa-chevron-down" ></i>
                 </li>
-                <li class="dropdown-menu">
-                    <a href="">Oficina</a>
+                <li class="dropdown-menu" onclick="dropSubCategoryMenu(`office`)">
+                   Oficina
                     <i class="fas fa-chevron-down" ></i>
                 </li>
                 <li><a href="">Contacto</a></li>
@@ -123,7 +123,7 @@
             <div class="subcategory_menu" id="art">
                 <div class="subcategory_header">
                     <h3><a href="">ARTÍSTICA</a></h3>
-                    <img src="/images/close.png" alt="">
+                    <img src="/images/close.png" alt="" onclick="closeWindow()">
                 </div>
                 <ul>
                     <li><a href="">Subcategoria</a></li>
@@ -135,7 +135,7 @@
             <div class="subcategory_menu" id="office">
                 <div class="subcategory_header">
                     <h3><a href="">OFICINA</a></h3>
-                    <img src="/images/close.png" alt="">
+                    <img src="/images/close.png" alt="" onclick="closeWindow()">
                 </div>
                 <ul>
                     <li><a href="">Subcategoria</a></li>

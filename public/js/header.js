@@ -22,16 +22,16 @@ function dropSearch() {
     let subcategoryMenu = document.querySelector(".active");
     if (searchBar.style.display === "block") {
       searchBar.style.display = "none";
-      subcategoryMenu?.classList.remove("active");
+      subcategoryMenu.classList.remove("active");
     } else {
       searchBar.style.display = "block";
       navBar.style.display = "none";
-      subcategoryMenu?.classList.remove("active");
+      subcategoryMenu.classList.remove("active");
     }
   }
 
   function dropSubCategoryMenu(id) {
-    console.log(id);
+    
     let list = document.getElementById(`${id}`);
     list.classList.toggle("active");
     navBar.style.display = "none";
