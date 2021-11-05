@@ -57,11 +57,13 @@ i.fa-search {
 /* Botón y barra de búsqueda mobile*/
 
 .search-form-mobile {
+    display: none;
+    order: 3;
     background-color: white;
     padding: 10px;
 }
 
-.search-form-mobile .search-bar {
+.search-bar {
     border: 1px solid var(--light-grey);
     border-radius: 50px;
     box-shadow: 0 0 4px rgba(0,0,0,0.5);
@@ -72,16 +74,16 @@ i.fa-search {
     margin: 0 10px;
 }
 
-.search-form-mobile .search-bar input {
+.search-bar input {
     border: none;
     flex-grow: 1;
 }
 
-.search-form-mobile .search-bar input:focus {
+.search-bar input:focus {
     outline: none;
 }
 
-.search-form-mobile .search-bar input::placeholder {
+.search-bar input::placeholder {
     color: var(--grey);
     font-family: var(--font_poppins);
 }
@@ -90,3 +92,206 @@ i.fa-search {
     border: none;
     background-color: white;
 }
+
+
+/* Finaliza botón y barra de búsqueda mobile */
+
+/* Botón y menú desplegable mobile */
+.main-header .navigation-bar {
+    order: 4;
+    padding: 15px;
+    width: 100%;
+}
+
+.main-header .navigation-bar ul.menu li {
+    padding: 10px 0;
+    cursor: pointer;
+    transition: color .5s ease;
+}
+
+.main-header .navigation-bar ul.menu li:hover {
+    color: var(--primary);
+}
+
+.main-header .navigation-bar .user-icons-mobile {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.main-header .navigation-bar .user-icons-mobile i{
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+.main-header .navigation-bar#navigation-bar-desktop {
+    display: none;
+}
+
+/* Menu desplegable de subcategorías */
+
+.nav_menu {
+    font-family: var(--font_poppins);
+    font-size: 1rem;
+}
+
+.subcategory_menu {
+    display: none;
+}
+
+.subcategory_menu.active {
+    display: block;
+    background-color: white;
+    position: fixed;
+    width: 100%;
+}
+
+.subcategory_menu .subcategory_header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.subcategory_menu .subcategory_header img {
+    width: 20px;
+    height: 20px;
+}
+
+.subcategory_menu ul {
+    padding: 15px;
+}
+
+.header-opacity {
+    opacity: 0.8;
+}
+
+.menu-user-admin {
+    width: 10rem;
+    background-color: white;
+    border-radius: 10px;
+    position: fixed;
+    right: 200px;
+    padding: 0.5rem;
+    margin-top: 10px;
+    font-family: var(--font_poppins);
+    z-index: 999;
+    box-shadow: 0 0 10px var(--primary);
+}
+
+/* MEDIA QUERIES */
+/* Tablet */
+@media (min-width: 768px){
+    .search-form-mobile {
+        width: 35%;
+        margin: 0 auto;
+    }
+
+}
+
+/* Escritorio */
+@media screen and (min-width: 992px) {
+
+    .main-header {
+        height: 100px;
+        padding: 10px 30px;
+    }
+
+    .main-header {
+        flex-wrap: nowrap;
+    }
+
+    .main-header .navigation-bar {
+        display: inherit;
+        order: 1;
+        width: 40%;
+    }
+
+    .main-header .navigation-bar .menu {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+        justify-content: space-around;
+    }
+
+        
+    .main-header .navigation-bar#navigation-bar-desktop {
+        display:inherit;
+    }
+
+    
+    .main-header .navigation-bar#navigation-bar-mobile {
+        display: none;
+    }
+
+   .main-header .burguer-menu-icon{
+        display: none;
+    }    
+
+   .main-header .logo {
+        height: 68px;
+        width: 262px;
+        order: 0;
+    }
+    
+    .main-header .search-icon {
+        display: none;
+    }
+
+    
+    .main-header .search-form-desktop {
+        display: inherit;
+        order: 3;
+    }
+    
+    .main-header .navigation-bar .user-icons-mobile {
+        display: none;
+    }
+    
+    .main-header .logo {
+        height: 68px;
+        width: 262px;
+        order: 0;
+    }
+
+    .main-header .user-icons-desktop {
+        display: flex;
+        font-size: 24px;
+        order: 4;
+    }
+
+    .main-header .user-icons-desktop i {
+        margin-left: 10px;
+    }
+
+    .user {
+        position: relative;
+    }
+
+    .menu-user {
+        display: none;
+        position: absolute;
+        font-size: 1rem;
+        width: 9rem;
+        background-color: white;
+        padding: 1rem;
+        border-radius: .5rem;
+        margin-left: -3rem;
+    }
+
+    .user:hover .menu-user{
+       display: block;
+
+    }
+
+    .session {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background: #00d900;
+        border-radius: 50px;
+        position: relative;
+        top: -10px;
+        right: 0px;
+    }
+
+}
+
