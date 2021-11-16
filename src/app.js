@@ -11,9 +11,11 @@ app.set('views', path.join(__dirname, 'views')) // Indica la ubicación de la ca
 
 /* Enrutadores */
 let indexRouter = require('./routes/index')
+let productsRouter = require('./routes/products')
 
 /* Routes */
 app.use('/', indexRouter)
+app.use('/products', productsRouter)
 
 
 
