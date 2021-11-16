@@ -6,10 +6,16 @@ const PORT = 3000
 /* Middlewares */
 app.use(express.static('public'));
 
+app.set("view engine", "ejs") // Setea el template engine
+app.set('views', path.join(__dirname, 'views')) // Indica la ubicación de la carpeta views 
+
+/* Enrutadores */
+let indexRouter = require('./routes/index')
+
 /* Routes */
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, "/views/home.html"))
-})
+app.use('/', indexRouter)
+
+
 
 
 app.listen(PORT, () => console.log(`
