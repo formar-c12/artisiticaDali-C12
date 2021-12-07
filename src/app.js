@@ -4,7 +4,7 @@ const path = require('path')
 const PORT = 3000
 
 /* Middlewares */
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.set("view engine", "ejs") // Setea el template engine
 app.set('views', path.join(__dirname, 'views')) // Indica la ubicación de la carpeta views 
@@ -16,8 +16,6 @@ let productsRouter = require('./routes/products')
 /* Routes */
 app.use('/', indexRouter)
 app.use('/products', productsRouter)
-
-
 
 
 app.listen(PORT, () => console.log(`

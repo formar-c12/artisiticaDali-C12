@@ -1,12 +1,13 @@
-let db = require('../database/dataBase')
+let { products } = require('../database/dataBase')
 
 let controller = {
     index: (req, res) => {
-        let products = db.products
-        console.log(products)
+
+        let productsInSale = products.filter(product => product.discount >= 10)
+        
         res.render('home', {
-            sliderTitle: "Ofertas destacadas 2",
-            sliderProducts: db.products
+            sliderTitle: "Ofertas destacadas",
+            sliderProducts: productsInSale
         })
     }
 }

@@ -285,54 +285,5 @@
     "category": "1",
     "subcategory": "Repuestos",
     "image": ["repuestoRivadavia.jpg"]
-}, {
-    "id": 33,
-    "name": "Cosas Misteriosas",
-    "price": "155",
-    "discount": "10",
-    "category": "2",
-    "subcategory": "Carpetas",
-    "image": "default-image.png"
-}, {
-    "id": 34,
-    "name": "Cosas Misteriosas",
-    "price": "1500",
-    "discount": "10",
-    "category": "2",
-    "subcategory": "Carpetas",
-    "image": "1629292753631_img_.png"
-}, {
-    "id": 35,
-    "name": "MULTIPLE 1",
-    "price": "1231",
-    "discount": "123",
-    "category": "2",
-    "subcategory": "Cintas adhesivas",
-    "image": ["1629294341366_img_.png", "1629294341375_img_.png"]
-}, {
-    "id": 36,
-    "name": "Sin Nada",
-    "price": "123",
-    "discount": "123",
-    "category": "1",
-    "subcategory": "Cartucheras",
-    "image": ["default-image.png"]
-}, {
-    "id": 37,
-    "name": "Prueba Validator 1",
-    "price": "123",
-    "description": " svaebrstbr",
-    "discount": "123",
-    "category": "2",
-    "subcategory": "Subcategorias",
-    "image": ["1629379247732_img_.png"]
-}, {
-    "id": 38,
-    "name": "coso",
-    "price": "102135",
-    "description": "aervearverv",
-    "discount": "212",
-    "category": "1",
-    "subcategory": "Marcadores",
-    "image": ["default-image.png"]
-}]
+}
+]
