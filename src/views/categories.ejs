@@ -11,7 +11,7 @@
             <div id="mySidepanel" class="sidepanel">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <% subcategories.forEach(subcategory => { %>
-                    <a href="/products/subcategory/<%- subcategory.id %>"><%- subcategory.name %></a>
+                    <a href="/products/subcategory/<%- subcategory.id %>"><%- subcategory %></a>
                 <% }) %>    
             </div>
               
@@ -20,7 +20,7 @@
         <div class="container products-container">
             <aside class="subcategories_menu-desktop">
                 <% subcategories.forEach(subcategory => { %>
-                    <a href="/products/subcategory/<%- subcategory.id %>"><%- subcategory.name %></a>
+                    <a href="/products/subcategory/<%- subcategory.id %>"><%- subcategory %></a>
                 <% }) %>   
             </aside>
             <section class="products">
@@ -47,6 +47,6 @@
         </div>
     </main>
     <%- include('partials/footer.ejs')%>
-    <script src="/javascripts/categoriesSidePanel.js"></script>
+    <script src="/js/categoriesSidePanel.js"></script>
 </body>
 </html>
