@@ -1,7 +1,9 @@
 <header>
     <div class="main-header">
        <div class="logo">
-           <img src="/images/logo/logo.png" alt="">
+        <a href="/">
+          <img src="/images/logo/logo.png" alt="">
+        </a>
        </div>
 
        <i class="fas fa-bars burguer-menu-icon" onclick="dropMenu()"></i>
@@ -60,9 +62,9 @@
 
        <!-- Buscador escritorio -->
 
-       <form action="" class="search-form-desktop">
+       <form action="/products/search" method="GET" class="search-form-desktop">
            <div class="search-bar">
-               <input type="search" name="" id="">
+               <input type="search" name="keywords" >
                <button type="submit"><i class="fas fa-search"></i></button>
            </div>
        </form>
@@ -78,9 +80,9 @@
 
         <!-- Buscador Mobile -->
 
-        <form action="" class="search-form-mobile" id="search">
+        <form action="/products/search" method="GET" class="search-form-mobile" id="search">
             <div class="search-bar">
-                <input type="search" name="" id="" placeholder="Buscar productos">
+                <input type="search" name="keywords" placeholder="Buscar productos">
                 <button type="submit"><i class="fas fa-search"></i></button>
             </div>
         </form>
