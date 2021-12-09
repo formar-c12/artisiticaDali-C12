@@ -12,10 +12,12 @@ app.set('views', path.join(__dirname, 'views')) // Indica la ubicación de la ca
 /* Enrutadores */
 let indexRouter = require('./routes/index')
 let productsRouter = require('./routes/products')
+let usersRouter = require('./routes/users')
 
 /* Routes */
 app.use('/', indexRouter)
 app.use('/products', productsRouter)
+app.use('/users', usersRouter)
 
 
 app.listen(PORT, () => console.log(`
