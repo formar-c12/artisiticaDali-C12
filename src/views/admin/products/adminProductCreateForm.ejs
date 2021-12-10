@@ -5,10 +5,10 @@
 <body>
     <%- include('../partials/headerAdmin') %>
     
-    <div class="container" style="max-width: 700px;">
-        <%- include('../partials/adminSidebar') %>
-      <div class="row">
-        <form class="row g-3" action="/admin/products/create" method="">
+    <div class="container-fluid" >
+        <div class="row">
+          <%- include('../partials/adminSidebar') %>
+        <form class="col-md-9 ms-sm-auto col-lg-10 px-md-4 row p-3 justify-content-center" action="/admin/products/create" method="">
             <div class="col-12 col-md-6">
                 <div class="col-12">
                     <label for="inputName" class="form-label">Nombre</label>
@@ -51,7 +51,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-outline-primary col-3 mt-3">
                 CREAR
             </button>
         </form>

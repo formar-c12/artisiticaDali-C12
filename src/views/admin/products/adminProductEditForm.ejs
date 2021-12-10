@@ -5,49 +5,54 @@
     <body>
         <%- include('../partials/headerAdmin') %>
         
-        <div class="container" style="max-width: 700px;">
-          <div class="row">
-            <%- include('../partials/adminSidebar') %>
-            <form class="row g-3" action="/admin/products/edit/" method="" >
-                <div class="col-12">
-                    <label for="inputName" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="inputName" name="name" value="">
-                    <small class="text-danger">Ingresa un nombre</small>
+        <div class="container-fluid" >
+            <div class="row">
+              <%- include('../partials/adminSidebar') %>
+            <form class="col-md-9 ms-sm-auto col-lg-10 px-md-4 row p-3 justify-content-center" action="/admin/products/create" method="">
+                <div class="col-12 col-md-6">
+                    <div class="col-12">
+                        <label for="inputName" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="inputName" name="name" value="">
+                        <small class="text-danger">Ingresa un nombre</small>
+                    </div>
+        
+                    <div class="col-12">
+                        <select class="form-select categorySelect" id="specificSizeSelect" name="category">
+                          <option selected hidden value="">Categorias</option>
+                          <option value=""></option>
+                        </select>
+                        <small class="text-danger">Selecciona una categoría</small>
+                    </div>
+                    <div class="col-12">
+                        <select class="form-select subcategorySelect" id="specificSizeSelect" name="subcategory">
+                          <option selected hidden value="">Subcategorias</option>
+                        </select>
+                        <small class="text-danger">Selecciona una subcategoria</small>
+                    </div>
+                    <div class="col-12">
+                        <label for="inputPrice" class="form-label">Precio</label>
+                        <input type="number" class="form-control" id="inputPrice" name="price" value="">
+                        <small class="text-danger">Ingresa un precio al producto</small>
+                    </div>
                 </div>
-                <div class="col-12">
-                    <select class="form-select categorySelect" id="specificSizeSelect" name="category">
-                      <option selected hidden value="">Categorias</option>
-                      <option value=""></option>
-                    </select>
-                    <small class="text-danger">Selecciona una categoría</small>
+                <div class="col-12 col-md-6">
+                    <div class="col-12">
+                        <label for="inputDiscount" class="form-label">Descuento</label>
+                        <input type="number" class="form-control" id="inputDiscount" name="discount" value="">
+                    </div>
+                    <div class="col-12">
+                        <label for="inputImage" class="form-label">Imagen</label>
+                        <input type="file" name="image" class="form-control" aria-label="file example" id="inputImage" multiple>
+                        <small class="text-danger">Formato inválido</small>
+                    </div>
+                    <div class="col-12">
+                        <label for="validationTextarea" class="form-label">Descripción</label>
+                        <textarea class="form-control" id="validationTextarea" name="description"></textarea>
+                    </div>
                 </div>
-                <div class="col-12">
-                    <select class="form-select subcategorySelect" id="specificSizeSelect" name="subcategory">
-                        <option selected hidden value="">Subcategorias</option>
-                          
-                      </select>
-                      <small class="text-danger">Selecciona una subcategoria</small>
-                </div>
-                <div class="col-12">
-                    <label for="inputPrice" class="form-label">Precio</label>
-                    <input type="number" class="form-control" id="inputPrice" name="price" value="">
-                    <small class="text-danger">Ingresa un precio al producto</small>
-                </div>
-                <div class="col-12">
-                    <label for="inputDiscount" class="form-label">Descuento</label>
-                    <input type="number" class="form-control" id="inputDiscount" name="discount" value="">
-                </div>
-                <div class="col-12">
-                    <label for="inputImage" class="form-label">Imagen</label>
-                    <input type="file" name="image" class="form-control" aria-label="file example" id="inputImage" multiple>
-                    <small class="text-danger">Formato inválido</small>
-                </div>
-                <div class="col-12">
-                    <label for="validationTextarea" class="form-label">Descripción</label>
-                    <textarea class="form-control" id="validationTextarea" name="description"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">
-                    GUARDAR
+    
+                <button type="submit" class="btn btn-outline-success col-3 mt-3">
+                    GUARDAR CAMBIOS
                 </button>
             </form>
           </div>
