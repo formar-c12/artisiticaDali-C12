@@ -2,9 +2,13 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const PORT = 3000
+const methodOverride = require('method-override')
 
 /* Middlewares */
 app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride('_method'))
 
 app.set("view engine", "ejs") // Setea el template engine
 app.set('views', path.join(__dirname, 'views')) // Indica la ubicación de la carpeta views 

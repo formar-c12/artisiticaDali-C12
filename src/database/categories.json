@@ -16,5 +16,11 @@
         "name" : "Oficina",
         "code" : "office",
         "image": "cat_oficina.jpg"
+    },
+    {
+        "id" : 4,
+        "name" : "Librería",
+        "code" : "office",
+        "image": "cat_oficina.jpg"
     }
 ]

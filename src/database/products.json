@@ -285,5 +285,13 @@
     "category": "1",
     "subcategory": "Repuestos",
     "image": ["repuestoRivadavia.jpg"]
-}
-]
+}, {
+    "id": 33,
+    "name": "Carretilla",
+    "price": 1500,
+    "category": 3,
+    "subcategory": "Perforadoras",
+    "description": "Alta carretilla",
+    "discount": 10,
+    "image": ["1639167435470_img_.jpg"]
+}]

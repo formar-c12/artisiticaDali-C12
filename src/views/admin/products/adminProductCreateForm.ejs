@@ -8,24 +8,29 @@
     <div class="container-fluid" >
         <div class="row">
           <%- include('../partials/adminSidebar') %>
-        <form class="col-md-9 ms-sm-auto col-lg-10 px-md-4 row p-3 justify-content-center" action="/admin/products/create" method="">
+        <form class="col-md-9 ms-sm-auto col-lg-10 px-md-4 row p-3 justify-content-center" action="/admin/product/store" method="POST" enctype="multipart/form-data">
             <div class="col-12 col-md-6">
                 <div class="col-12">
                     <label for="inputName" class="form-label">Nombre</label>
                     <input type="text" class="form-control" id="inputName" name="name" value="">
                     <small class="text-danger">Ingresa un nombre</small>
                 </div>
-    
+
                 <div class="col-12">
                     <select class="form-select categorySelect" id="specificSizeSelect" name="category">
                       <option selected hidden value="">Categorias</option>
-                      <option value=""></option>
+                    <% categories.forEach(category => { %>
+                        <option value="<%- category.id %>"><%- category.name %> </option>
+                    <% }) %>
                     </select>
                     <small class="text-danger">Selecciona una categoría</small>
                 </div>
                 <div class="col-12">
                     <select class="form-select subcategorySelect" id="specificSizeSelect" name="subcategory">
                       <option selected hidden value="">Subcategorias</option>
+                      <% subcategories.forEach(subcategory => { %>
+                        <option value="<%- subcategory %>"><%- subcategory %> </option>
+                      <% }) %>
                     </select>
                     <small class="text-danger">Selecciona una subcategoria</small>
                 </div>
