@@ -17,7 +17,7 @@ router.post('/product/store', upload.single('image'),controller.store)
 /* GET - Show product edit form */
 router.get('/product/edit/:id', controller.edit)
 /* PUT - Update a product */
-router.put('/product/edit/:id', controller.update)
+router.put('/product/edit/:id', upload.single('image'),controller.update)
 
 /* DELETE - Delete one product */
 router.delete('/product/delete/:id', controller.destroy)
