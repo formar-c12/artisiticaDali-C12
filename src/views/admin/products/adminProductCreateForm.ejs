@@ -12,8 +12,10 @@
             <div class="col-12 col-md-6">
                 <div class="col-12">
                     <label for="inputName" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="inputName" name="name" value="">
-                    <small class="text-danger">Ingresa un nombre</small>
+                    <input type="text" class="form-control" id="inputName" name="name" value="<%= locals.old && old.name %> ">
+                    <% if (locals.errors && errors.name) { %>
+                        <small class="text-danger"><%= errors.name.msg %> </small>
+                    <% } %>
                 </div>
 
                 <div class="col-12">

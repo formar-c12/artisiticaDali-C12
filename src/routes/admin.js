@@ -1,7 +1,9 @@
 let express = require('express');
 let router = express.Router();
 let controller = require('../controllers/adminController');
-let upload = require('../middlewares/uploadProductFile')
+let upload = require('../middlewares/uploadProductFile');
+let userAdminCheck = require('../middlewares/userAdminCheck')
+let productFormValidator = require('../validations/productFormValidator')
 
 /* GET - Show products list */
 router.get('/', controller.index)
@@ -12,7 +14,7 @@ router.get('/products', controller.products)
 /* GET - Show product create form */
 router.get('/product/create', controller.create)
 /* POST - Create new product */
-router.post('/product/store', upload.single('image'),controller.store)
+router.post('/product/store', upload.single('image'), productFormValidator,controller.store)
 
 /* GET - Show product edit form */
 router.get('/product/edit/:id', controller.edit)
