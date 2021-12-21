@@ -12,22 +12,22 @@
        <nav class="navigation-bar" id="navigation-bar-mobile">
 
         <div class="user-icons-mobile">
-            <i class="fas fa-user"></i>
-            <i class="fas fa-shopping-cart"></i>
+            <a href="/users/login"><i class="fas fa-user"></i></a>
+            <a href="/"><i class="fas fa-shopping-cart"></i></a>
         </div>
 
         <!-- Lista con los elementos del menú (categorías) -->
         <ul class="menu">
             <li class="dropdown-menu" onclick="dropSubCategoryMenu(`school`)">
-               Escolar
+                <a href="/products/category/1">Escolar</a> 
                 <i class="fas fa-chevron-down" ></i>
             </li>
             <li class="dropdown-menu" onclick="dropSubCategoryMenu(`art`)">
-               Artística
+                <a href="/products/category/2">Artística</a> 
                 <i class="fas fa-chevron-down" ></i>
             </li>
             <li class="dropdown-menu" onclick="dropSubCategoryMenu(`office`)">
-               Oficina
+                <a href="/products/category/3">Oficina</a> 
                 <i class="fas fa-chevron-down" ></i>
             </li>
             <li><a href="">Contacto</a></li>
@@ -69,11 +69,11 @@
        </form>
 
        <!-- Iconos de usuario escritorio -->
-       <div class="user-icons-desktop">
-            <i class="fas fa-user"></i>
-            <i class="fas fa-shopping-cart"></i>
+        <div class="user-icons-desktop">
+            <a href="/users/login"><i class="fas fa-user"></i></a>
+            <a href="/"><i class="fas fa-shopping-cart"></i></a>
         </div>
-
+        
     </div>
     <nav class="nav_menu">
 
@@ -127,3 +127,6 @@
 
     </nav>
 </header>
+<% if (locals.user) { %>
+    <h1><%= session.user.name %> </h1>
+<% } %>

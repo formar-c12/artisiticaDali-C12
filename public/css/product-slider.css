@@ -63,14 +63,14 @@
 @media screen and (min-width: 768px) {
 
     .productSlide {
-        width: 33%;
+        
         padding: 20px;
     }
 }
 
 @media screen and (min-width: 1024px) {
     .productSlide {
-        width: 20%;
+        
         min-height: fit-content;
     }
 }
