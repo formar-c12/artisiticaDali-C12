@@ -95,6 +95,14 @@ let controller = {
             res.cookie('userArtisticaDali', "", { maxAge: -1 })
         }
         res.redirect('/')
+    }, 
+    profile: (req, res) => {
+        let user = users.find(user => user.id === req.session.user.id)
+
+        res.render('userProfile', {
+            user, 
+            session: req.session
+        })
     }
 }
 

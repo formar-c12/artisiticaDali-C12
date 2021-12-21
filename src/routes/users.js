@@ -18,5 +18,8 @@ router.post('/register', uploadFile.single('avatar'),registerValidator, controll
 /* GEt - Logout*/
 router.get('/logout', controller.logout)
 
+/* GET - User profile */
+router.get('/profile', controller.profile)
+
 
 module.exports = router
