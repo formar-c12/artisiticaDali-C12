@@ -10,7 +10,8 @@ let controller = {
         res.render('productDetail', {
             product,
             sliderTitle: "Productos relacionados",
-            sliderProducts: relatedProducts
+            sliderProducts: relatedProducts,
+            session: req.session
         })
     },
     category: (req, res) => {
@@ -24,7 +25,8 @@ let controller = {
         res.render('categories', {
             products: productsCategory,
             category,
-            subcategories: uniqueSubcategories
+            subcategories: uniqueSubcategories,
+            session: req.session
         })
     },
     subcategory: (req, res) => {
@@ -40,7 +42,8 @@ let controller = {
        res.render('subcategory', {
            products: productsSubcategories,
            category,
-           subcategories: uniqueSubcategories
+           subcategories: uniqueSubcategories,
+            session: req.session
        })
     },
     search: (req, res) => {
@@ -50,7 +53,8 @@ let controller = {
         
         res.render('searchResult', {
             result,
-            search: keywords
+            search: keywords,
+            session: req.session
         })
 
     }

@@ -6,17 +6,21 @@ let { validationResult } = require('express-validator')
 
 let controller = {
     index: (req, res) => {
-        res.render('admin/adminIndex')
+        res.render('admin/adminIndex', {
+            session: req.session
+        })
     },
     products: (req, res) => {
         res.render('admin/products/adminProducts', {
-            products
+            products,
+            session: req.session
         })
     },
     create: (req, res) => {
        res.render('admin/products/adminProductCreateForm', {
            categories,
-           subcategories: uniqueSubcategories
+           subcategories: uniqueSubcategories,
+           session: req.session
        })
     },
     store: (req, res) => {
@@ -60,7 +64,9 @@ let controller = {
                 categories,
                 subcategories: uniqueSubcategories,
                 errors: errors.mapped(),
-                old: req.body
+                old: req.body,
+                session: req.session
+
             })
         }
     },
@@ -71,7 +77,8 @@ let controller = {
         res.render('admin/products/adminProductEditForm', {
             product,
             categories, 
-            subcategories: uniqueSubcategories
+            subcategories: uniqueSubcategories,
+            session: req.session
         })
     },
     update: (req, res) => {

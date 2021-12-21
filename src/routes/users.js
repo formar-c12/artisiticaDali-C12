@@ -15,5 +15,8 @@ router.get('/register', controller.register)
 /* POST - Register Data */
 router.post('/register', uploadFile.single('avatar'),registerValidator, controller.processRegister)
 
+/* GEt - Logout*/
+router.get('/logout', controller.logout)
+
 
 module.exports = router
