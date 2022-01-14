@@ -1,6 +1,6 @@
 let { check, body } = require('express-validator');
-const res = require('express/lib/response');
-const { users } = require('../database/dataBase')
+const { users } = require('../database/dataBase');
+const bcrypt = require('bcryptjs')
 
 module.exports = [
     check('email')
@@ -19,7 +19,7 @@ module.exports = [
             let user = users.find(user => user.email == req.body.email);
 
             if(user){
-                if(user.pass === req.body.pass){
+                if(bcrypt.compareSync(req.body.pass, user.pass)){
                     return true
                 }else{
                     return false

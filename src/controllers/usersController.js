@@ -1,5 +1,6 @@
 const { users, writeUsersJSON } = require('../database/dataBase');
-const { validationResult } = require('express-validator')
+const { validationResult } = require('express-validator');
+const bcrypt = require('bcryptjs')
 
 let controller = {
     login: (req, res) => {
@@ -9,7 +10,7 @@ let controller = {
     },
     processLogin: (req, res) => {
         let errors = validationResult(req);
-       
+        
         if(errors.isEmpty()){
             let user = users.find(user => user.email === req.body.email);
            
@@ -66,7 +67,7 @@ let controller = {
                 name,
                 last_name,
                 email, 
-                pass: pass1,
+                pass: bcrypt.hashSync(pass1, 10),
                 avatar: req.file ? req.file.filename : "default-image.png",
                 rol: "ROL_USER",
                 tel: "",
