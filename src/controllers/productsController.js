@@ -1,5 +1,11 @@
 let { products, categories } = require('../database/dataBase')
 
+const db = require('../database/models');
+
+const Products = db.Product;
+const Categories = db.Category;
+const Subcategories = db.Subcategory;
+
 let controller = {
     detail: (req, res) => {
         let productDetailId = +req.params.id;

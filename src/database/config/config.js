@@ -2,7 +2,7 @@ module.exports = {
   "development": {
     "username": "root",
     "password": null,
-    "database": "database_development",
+    "database": "artistica_dali",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },

@@ -1,14 +1,26 @@
-let { products } = require('../database/dataBase')
+const db = require('../database/models');
+const { Op } = require('sequelize');
+
+const Products = db.Product;
 
 let controller = {
     index: (req, res) => {
-        let productsInSale = products.filter(product => product.discount >= 10)
-        
-        res.render('home', {
-            sliderTitle: "Ofertas destacadas",
-            sliderProducts: productsInSale,
-            session: req.session
+        Products.findAll({
+            include: [{ association: 'productImages' }],
+            where: {
+                discount: {
+                    [Op.gte]: 5
+                }
+            }
         })
+        .then((productsInSale) => {
+            res.render('home', {
+                sliderTitle: "Ofertas destacadas",
+                sliderProducts: productsInSale,
+                session: req.session
+            })
+        })
+        .catch(error => console.log(error))
     }
 }
 
