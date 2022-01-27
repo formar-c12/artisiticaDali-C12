@@ -4,12 +4,11 @@ let controller = require('../controllers/adminController');
 let upload = require('../middlewares/uploadProductFile');
 let userAdminCheck = require('../middlewares/userAdminCheck')
 let productFormValidator = require('../validations/productFormValidator')
-
 /* GET - Show products list */
 router.get('/', controller.index)
 
 /* GET - Show products list */
-router.get('/products', controller.products)
+router.get('/products', userAdminCheck, controller.products)
 
 /* GET - Show product create form */
 router.get('/product/create', controller.create)
