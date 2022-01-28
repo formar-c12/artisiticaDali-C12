@@ -5,13 +5,13 @@
     <%- include('partials/header.ejs') %>
     <main class="categories">
         <div class="cat_banner container-fluid">
-            <img src="/images/categorias/<%= category.image %> " alt="Portada de categoria <%= category.name %> ">
+            <img src="/images/categorias/<%= category.banner %> " alt="Portada de categoria <%= category.name %> ">
         </div>
         <div class="subcategories_menu-mobile">
             <div id="mySidepanel" class="sidepanel">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <% subcategories.forEach(subcategory => { %>
-                    <a href="/products/subcategory/<%- subcategory %>/<%- category.id %>"><%- subcategory %></a>
+                    <a href="/products/subcategory/<%- subcategory.id %>/<%- category.id %>"><%- subcategory.name %></a>
                 <% }) %>    
             </div>
               
@@ -20,7 +20,7 @@
         <div class="container products-container">
             <aside class="subcategories_menu-desktop">
                 <% subcategories.forEach(subcategory => { %>
-                    <a href="/products/subcategory/<%- subcategory %>/<%- category.id %>"><%- subcategory %></a>
+                    <a href="/products/subcategory/<%- subcategory.id %>/<%- category.id %>"><%- subcategory.name %></a>
                 <% }) %>    
             </aside>
             <section class="products">
@@ -28,7 +28,7 @@
                     <div class="product">
                         <div class="productDiscount"><%- product.discount %>% OFF</div>
                         <a href="/products/detail/<%- product.id %>">
-                        <img src="/images/productos/<%- product.image[0]%>" alt="">
+                        <img src="/images/productos/<%- product.productImages[0].image%>" alt="">
                         <p class="productName"> 
                             <% if (product.name.length > 30) { %>
                                 <%- `${product.name.slice(0,30)}...` %>
