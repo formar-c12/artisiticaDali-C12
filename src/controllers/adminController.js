@@ -77,14 +77,17 @@ let controller = {
         }
     },
     edit: (req, res) => {
-        let productId = +req.params.id;
-        
-        let product = products.find(product => product.id === productId)
-        res.render('admin/products/adminProductEditForm', {
-            product,
-            categories, 
-            subcategories: uniqueSubcategories,
-            session: req.session
+        const productPromise = Products.findByPk(req.params.id);
+        const categoriesPromise = Categories.findAll();
+        const subcategoriesPromise = Subcategories.findAll();
+        Promise.all([productPromise, categoriesPromise, subcategoriesPromise])
+        .then(([product, categories, subcategories])=>{
+            res.render('admin/products/adminProductEditForm', {
+                product,
+                categories, 
+                subcategories,
+                session: req.session
+            })
         })
     },
     update: (req, res) => {
