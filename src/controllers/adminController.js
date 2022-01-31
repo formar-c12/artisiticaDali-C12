@@ -1,5 +1,5 @@
 //let { products, writeProductsJSON, categories } = require('../database/dataBase')
-//let fs = require('fs')
+let fs = require('fs')
 //let subcategories = products.map(product => product.subcategory)
 //let uniqueSubcategories = subcategories.filter((x, i, a) => a.indexOf(x) == i)
 let { validationResult } = require('express-validator')
@@ -74,6 +74,7 @@ let controller = {
                 session: req.session
                 })
             })
+            .catch(error => console.log(error))
         }
     },
     edit: (req, res) => {
@@ -89,28 +90,50 @@ let controller = {
                 session: req.session
             })
         })
+        .catch(error => console.log(error))
     },
     update: (req, res) => {
-        let productId = +req.params.id;
-
         const {name, price, category, subcategory, description, discount} = req.body
-
-        products.forEach(product => {
-            if(product.id === productId){
-                product.id = product.id,
-                product.name = name.trim(),
-                product.price = +price.trim(),
-                product.category = +category,
-                product.subcategory = subcategory,
-                product.description = description.trim(),
-                product.discount = +discount,
-                product.image = req.file ? [req.file.filename] : product.image
+        Products.update({
+            name, 
+            price, 
+            description,
+            discount, 
+            subcategoryId: subcategory,
+        }, {
+            where: {
+                id: req.params.id
             }
         })
-
-        writeProductsJSON(products)
-
-        res.redirect('/admin/products')
+        .then((result) => {
+            if(result){
+                ProductImages.findAll({
+                    where: {
+                        productId: req.params.id
+                    }
+                })
+                .then((images) => {
+                    images.forEach((image) => {
+                        fs.existsSync('./public/images/productos/', image.image)
+                        ? fs.unlinkSync(`./public/images/productos/${image.image}`)
+                        : console.log('No se encontró el archivo')
+                    })
+                    ProductImages.destroy({
+                        where: {
+                            productId: req.params.id
+                        }
+                    })
+                    .then(() => {
+                        ProductImages.create({
+                            image: req.file ? req.file.filename : 'default-image.png',
+                            productId: req.params.id
+                        })
+                        .then(() => res.redirect('/admin/products'))
+                    })
+                })
+            }
+        })
+        .catch(error => console.log(error))
     },
     destroy: (req, res) => {
         let productId = +req.params.id;
