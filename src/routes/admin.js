@@ -8,7 +8,7 @@ let productFormValidator = require('../validations/productFormValidator')
 router.get('/', controller.index)
 
 /* GET - Show products list */
-router.get('/products', userAdminCheck, controller.products)
+router.get('/products', controller.products)
 
 /* GET - Show product create form */
 router.get('/product/create', controller.create)

@@ -1,7 +1,7 @@
-let { products, writeProductsJSON, categories } = require('../database/dataBase')
-let fs = require('fs')
-let subcategories = products.map(product => product.subcategory)
-let uniqueSubcategories = subcategories.filter((x, i, a) => a.indexOf(x) == i)
+//let { products, writeProductsJSON, categories } = require('../database/dataBase')
+//let fs = require('fs')
+//let subcategories = products.map(product => product.subcategory)
+//let uniqueSubcategories = subcategories.filter((x, i, a) => a.indexOf(x) == i)
 let { validationResult } = require('express-validator')
 
 const db = require('../database/models');
@@ -9,6 +9,7 @@ const db = require('../database/models');
 const Products = db.Product;
 const Categories = db.Category;
 const Subcategories = db.Subcategory;
+const ProductImages = db.ProductImage;
 
 
 let controller = {
@@ -18,62 +19,60 @@ let controller = {
         })
     },
     products: (req, res) => {
-        res.render('admin/products/adminProducts', {
-            products,
-            session: req.session
+        Products.findAll()
+        .then(products => {
+            res.render('admin/products/adminProducts', {
+                products,
+                session: req.session
+            })
         })
     },
     create: (req, res) => {
-       res.render('admin/products/adminProductCreateForm', {
-           categories,
-           subcategories: uniqueSubcategories,
-           session: req.session
-       })
+        let allCategories = Categories.findAll();
+        let allSubcategories = Subcategories.findAll();
+        Promise.all([allCategories, allSubcategories])
+        .then(([categories, subcategories]) => {
+            res.render('admin/products/adminProductCreateForm', {
+                categories,
+                subcategories,
+                session: req.session
+            })   
+        })
     },
     store: (req, res) => {
         let errors = validationResult(req)
 
         if (errors.isEmpty()) {
-            let lastId = 1;
-
-            products.forEach(product => {
-                if(product.id > lastId){
-                    lastId = product.id
-                }
-            });
-    
             const {name, price, category, subcategory, description, discount} = req.body
-    
-            let newProduct = {
-                id: lastId + 1,
-                name: name.trim(),
-                price: +price.trim(),
-                category: +category,
-                subcategory,
-                description: description.trim(),
-                discount: +discount,
-                image: req.file ? [req.file.filename] : ["default-image.png"]
-            }
-    
-            /* let newProduct = {
-                ...req.body,
-                id: lastId + 1,
-                image: req.file ? req.file.filename : "default-image.png"
-            } */
-    
-            products.push(newProduct)
-    
-            writeProductsJSON(products)
-    
-            res.redirect('/admin/products')
+            Products.create({
+                name,
+                price,
+                description,
+                discount,
+                subcategoryId: subcategory,
+            })
+            .then((product) => {
+                ProductImages.create({
+                    image: req.file ? req.file.filename : 'default-image.png',
+                    productId: product.id
+                })
+                .then(() => {
+                    res.redirect('/admin/products')
+                })
+            })
+            .catch(error => console.log(error))
         } else {
+            let allCategories = Categories.findAll();
+            let allSubcategories = Subcategories.findAll();
+            Promise.all([allCategories, allSubcategories])
+            .then(([categories, subcategories]) => {
             res.render('admin/products/adminProductCreateForm', {
                 categories,
-                subcategories: uniqueSubcategories,
+                subcategories,
                 errors: errors.mapped(),
                 old: req.body,
                 session: req.session
-
+                })
             })
         }
     },

@@ -5,9 +5,7 @@ module.exports = [
     .notEmpty()
     .withMessage('El campo nombre es obligatorio').bail()
     .isLength({ min: 4, max: 50 })
-    .withMessage('El nombre tiene que tener entre 4 y 50 caracteres')
-    .isAlphanumeric()
-    .withMessage('Ingresa un nombre válido'),
+    .withMessage('El nombre tiene que tener entre 4 y 50 caracteres'),
 
     check('category')
     .notEmpty()
