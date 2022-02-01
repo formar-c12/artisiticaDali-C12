@@ -21,7 +21,8 @@ let controller = {
     products: (req, res) => {
         Products.findAll()
         .then(products => {
-            res.render('admin/products/adminProducts', {
+           
+           res.render('admin/products/adminProducts', {
                 products,
                 session: req.session
             })
@@ -41,9 +42,16 @@ let controller = {
     },
     store: (req, res) => {
         let errors = validationResult(req)
+        let arrayImages = [];
+        if(req.files){
+            req.files.forEach((image) => {
+                arrayImages.push(image.filename)
+            })
+        }
 
         if (errors.isEmpty()) {
-            const {name, price, category, subcategory, description, discount} = req.body
+            const {name, price, category, subcategory, description, discount} = req.body;
+
             Products.create({
                 name,
                 price,
@@ -52,13 +60,24 @@ let controller = {
                 subcategoryId: subcategory,
             })
             .then((product) => {
-                ProductImages.create({
-                    image: req.file ? req.file.filename : 'default-image.png',
-                    productId: product.id
-                })
-                .then(() => {
-                    res.redirect('/admin/products')
-                })
+                if(arrayImages.length > 0){
+                    let images = arrayImages.map((image) => {
+                        return {
+                            image: image,
+                            productId: product.id
+                        }
+                    });
+                    ProductImages.bulkCreate(images)
+                    .then(() => res.redirect('/admin/products'))
+                    .catch(error => console.log(error))
+                }else {
+                    ProductImages.create({
+                        image: 'default-image.png',
+                        productId: product.id
+                    })
+                    .then(() => {res.redirect('/admin/products')})
+                    .catch(error => console.log(error))
+                }
             })
             .catch(error => console.log(error))
         } else {
@@ -78,7 +97,8 @@ let controller = {
         }
     },
     edit: (req, res) => {
-        const productPromise = Products.findByPk(req.params.id);
+        let productId = Number(req.params.id);
+        const productPromise = Products.findByPk(productId);
         const categoriesPromise = Categories.findAll();
         const subcategoriesPromise = Subcategories.findAll();
         Promise.all([productPromise, categoriesPromise, subcategoriesPromise])
@@ -90,23 +110,24 @@ let controller = {
                 session: req.session
             })
         })
-        .catch(error => console.log(error))
+        .catch(error => console.log(error)) 
     },
     update: (req, res) => {
-        const {name, price, category, subcategory, description, discount} = req.body
-        Products.update({
-            name, 
-            price, 
-            description,
-            discount, 
-            subcategoryId: subcategory,
-        }, {
-            where: {
-                id: req.params.id
-            }
-        })
-        .then((result) => {
-            if(result){
+        let errors = validationResult(req)
+        if(errors.isEmpty()){
+            const {name, price, category, subcategory, description, discount} = req.body
+            Products.update({
+                name, 
+                price, 
+                description,
+                discount, 
+                subcategoryId: subcategory,
+            }, {
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then((result) => {
                 ProductImages.findAll({
                     where: {
                         productId: req.params.id
@@ -114,8 +135,8 @@ let controller = {
                 })
                 .then((images) => {
                     images.forEach((image) => {
-                        fs.existsSync('./public/images/productos/', image.image)
-                        ? fs.unlinkSync(`./public/images/productos/${image.image}`)
+                        fs.existsSync('../public/images/productos/', image.image)
+                        ? fs.unlinkSync(`../public/images/productos/${image.image}`)
                         : console.log('No se encontró el archivo')
                     })
                     ProductImages.destroy({
@@ -128,12 +149,33 @@ let controller = {
                             image: req.file ? req.file.filename : 'default-image.png',
                             productId: req.params.id
                         })
-                        .then(() => res.redirect('/admin/products'))
+                        .then(() => {
+                           res.redirect('/admin/products')
+                        })
                     })
                 })
-            }
-        })
-        .catch(error => console.log(error))
+                .catch(error => console.log(error))
+            })
+           
+        }else{
+            let productId = Number(req.params.id);
+            const productPromise = Products.findByPk(productId);
+            const categoriesPromise = Categories.findAll();
+            const subcategoriesPromise = Subcategories.findAll();
+            Promise.all([productPromise, categoriesPromise, subcategoriesPromise])
+            .then(([product, categories, subcategories])=>{
+                res.render('admin/products/adminProductEditForm', {
+                    product,
+                    categories, 
+                    subcategories,
+                    errors: errors.mapped(),
+                    old: req.body,
+                    session: req.session
+                })
+            })
+            .catch(error => console.log(error)) 
+        }
+                
     },
     destroy: (req, res) => {
        ProductImages.findAll({
@@ -143,8 +185,8 @@ let controller = {
        })
        .then((images) => {
             images.forEach((image) => {
-                fs.existsSync('./public/images/productos/', image.image)
-                ? fs.unlinkSync(`./public/images/productos/${image.image}`)
+                fs.existsSync('../public/images/productos/', image.image)
+                ? fs.unlinkSync(`../public/images/productos/${image.image}`)
                 : console.log('No se encontró el archivo')
             })
             ProductImages.destroy({

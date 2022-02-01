@@ -13,12 +13,12 @@ router.get('/products', controller.products)
 /* GET - Show product create form */
 router.get('/product/create', controller.create)
 /* POST - Create new product */
-router.post('/product/store', upload.single('image'), productFormValidator,controller.store)
+router.post('/product/store', upload.array('image'), productFormValidator,controller.store)
 
 /* GET - Show product edit form */
 router.get('/product/edit/:id', controller.edit)
 /* PUT - Update a product */
-router.put('/product/edit/:id', upload.single('image'),controller.update)
+router.put('/product/edit/:id', upload.array('image'), productFormValidator,controller.update)
 
 /* DELETE - Delete one product */
 router.delete('/product/delete/:id', controller.destroy)
